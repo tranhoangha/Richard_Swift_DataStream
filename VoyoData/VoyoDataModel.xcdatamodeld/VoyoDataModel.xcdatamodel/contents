@@ -1,0 +1,372 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="10171" systemVersion="15E65" minimumToolsVersion="Xcode 7.0">
+    <entity name="VDAggregate" representedClassName=".VDAggregate" syncable="YES">
+        <attribute name="rCo2Saved" optional="YES" attributeType="Decimal" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="rDistance" optional="YES" attributeType="Decimal" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="rDriveTime" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="rEndTime" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="rForDevice" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="rFuelSaved" optional="YES" attributeType="Decimal" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="rFuelUsed" optional="YES" attributeType="Decimal" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="rId" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
+        <attribute name="rIdleTimeSaved" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="rLinkedId" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="rNumEvents" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="rNumTrips" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="rStartTime" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="rTimeStopped" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="rType" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <relationship name="rAggUser" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="VDUser" inverseName="rMyAggregates" inverseEntity="VDUser" syncable="YES"/>
+        <relationship name="rAlerts" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="VDAlertToAggregate" inverseName="rAggregate" inverseEntity="VDAlertToAggregate" syncable="YES"/>
+        <relationship name="rDevice" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="VDDevice" inverseName="rAggregates" inverseEntity="VDDevice" syncable="YES"/>
+        <relationship name="rDeviceLastAggregateFor" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="VDDevice" inverseName="rLastDailyAggregate" inverseEntity="VDDevice" syncable="YES"/>
+        <relationship name="rTrips" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="VDTripToAggregate" inverseName="rAggregate" inverseEntity="VDTripToAggregate" syncable="YES"/>
+        <relationship name="rUser" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="VDUser" inverseName="rAggregates" inverseEntity="VDUser" syncable="YES"/>
+        <relationship name="rUserLastAggregateFor" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="VDUser" inverseName="rLastDailyAggregate" inverseEntity="VDUser" syncable="YES"/>
+    </entity>
+    <entity name="VDAlert" representedClassName=".VDAlert" syncable="YES">
+        <attribute name="rActive" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="rEnd" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="rHasBeenDeleted" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="rIcon" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="rId" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="rLatitude" optional="YES" attributeType="Decimal" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="rLongDescription" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="rLongitude" optional="YES" attributeType="Decimal" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="rName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="rSeverity" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="rShortDescription" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="rStart" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="rType" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <relationship name="rAggregates" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="VDAlertToAggregate" inverseName="rAlert" inverseEntity="VDAlertToAggregate" syncable="YES"/>
+        <relationship name="rDevice" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="VDDevice" inverseName="rAlerts" inverseEntity="VDDevice" syncable="YES"/>
+        <relationship name="rTrip" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="VDTrip" inverseName="rAlerts" inverseEntity="VDTrip" syncable="YES"/>
+        <relationship name="rUsers" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="VDUserAlerts" inverseName="rAlert" inverseEntity="VDUserAlerts" syncable="YES"/>
+        <relationship name="rVehicle" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="VDVehicle" inverseName="rAlerts" inverseEntity="VDVehicle" syncable="YES"/>
+    </entity>
+    <entity name="VDAlertToAggregate" representedClassName=".VDAlertToAggregate" syncable="YES">
+        <attribute name="rIndex" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <relationship name="rAggregate" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="VDAggregate" inverseName="rAlerts" inverseEntity="VDAggregate" syncable="YES"/>
+        <relationship name="rAlert" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="VDAlert" inverseName="rAggregates" inverseEntity="VDAlert" syncable="YES"/>
+    </entity>
+    <entity name="VDContact" representedClassName=".VDContact" syncable="YES">
+        <attribute name="rEmail" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="rFirstName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="rId" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="rLastName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="rPhoneNumber" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="rUser" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="VDUser" inverseName="rContacts" inverseEntity="VDUser" syncable="YES"/>
+    </entity>
+    <entity name="VDDevice" representedClassName=".VDDevice" syncable="YES">
+        <attribute name="rEncryptionKey" optional="YES" attributeType="Binary" syncable="YES"/>
+        <attribute name="rName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="rSerial" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="rVersion" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="rActiveDtcs" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="VDDTC" inverseName="rActiveOnDevice" inverseEntity="VDDTC" syncable="YES"/>
+        <relationship name="rAggregates" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="VDAggregate" inverseName="rDevice" inverseEntity="VDAggregate" syncable="YES"/>
+        <relationship name="rAlerts" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="VDAlert" inverseName="rDevice" inverseEntity="VDAlert" syncable="YES"/>
+        <relationship name="rAvatar" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="VDImage" inverseName="rDeviceAvatar" inverseEntity="VDImage" syncable="YES"/>
+        <relationship name="rDTCs" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="VDDTC" inverseName="rDevice" inverseEntity="VDDTC" syncable="YES"/>
+        <relationship name="rLastDailyAggregate" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="VDAggregate" inverseName="rDeviceLastAggregateFor" inverseEntity="VDAggregate" syncable="YES"/>
+        <relationship name="rLastPoint" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="VDPoint" inverseName="rDeviceLastPointFor" inverseEntity="VDPoint" syncable="YES"/>
+        <relationship name="rLastTrip" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="VDTrip" inverseName="rDeviceLastTripFor" inverseEntity="VDTrip" syncable="YES"/>
+        <relationship name="rNextIntersection" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="VDIntersection" inverseName="rDevicesNextIntersectionFor" inverseEntity="VDIntersection" syncable="YES"/>
+        <relationship name="rPendingAvatar" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="VDImage" inverseName="rPendingDeviceAvatar" inverseEntity="VDImage" syncable="YES"/>
+        <relationship name="rRequestsForDevice" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="VDUserRequest" inverseName="rDevice" inverseEntity="VDUserRequest" syncable="YES"/>
+        <relationship name="rSettingChanges" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="VDDeviceSettingsChanges" inverseName="rDevice" inverseEntity="VDDeviceSettingsChanges" syncable="YES"/>
+        <relationship name="rSettings" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="VDDeviceSettings" inverseName="rDevice" inverseEntity="VDDeviceSettings" syncable="YES"/>
+        <relationship name="rTrips" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="VDTrip" inverseName="rDevice" inverseEntity="VDTrip" syncable="YES"/>
+        <relationship name="rUserPermissions" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="VDPermission" inverseName="rDevice" inverseEntity="VDPermission" syncable="YES"/>
+    </entity>
+    <entity name="VDDeviceSettings" representedClassName=".VDDeviceSettings" syncable="YES">
+        <attribute name="rAutoKeyAllowed" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="rAutoStopEnabled" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="rAutoStopTime" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="rDriverDoorOnly" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="rImmobilizerEnabled" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="rImmobTimes" optional="YES" attributeType="Binary" syncable="YES"/>
+        <attribute name="rKeylessEnabled" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="rMobilizeOnProximityEnabled" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="rPrivacySettings" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="rScheduledImmobilizerEnabled" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="rStartStopEnabled" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="rStopAtParkEnabled" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <relationship name="rDevice" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="VDDevice" inverseName="rSettings" inverseEntity="VDDevice" syncable="YES"/>
+    </entity>
+    <entity name="VDDeviceSettingsChanges" representedClassName=".VDDeviceSettingsChanges" syncable="YES">
+        <attribute name="rSetting" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="rTime" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="rValue" optional="YES" attributeType="Binary" syncable="YES"/>
+        <relationship name="rDevice" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="VDDevice" inverseName="rSettingChanges" inverseEntity="VDDevice" syncable="YES"/>
+    </entity>
+    <entity name="VDDTC" representedClassName=".VDDTC" syncable="YES">
+        <attribute name="rBus" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="rDTCNumber" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="rId" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="rLongDescription" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="rName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="rSeverity" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="rShortDescription" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="rSource" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="rStillActive" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="rSymptom" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="rTimeFirstReported" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="rTimeLastReported" optional="YES" attributeType="Date" syncable="YES"/>
+        <relationship name="rActiveOnDevice" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="VDDevice" inverseName="rActiveDtcs" inverseEntity="VDDevice" syncable="YES"/>
+        <relationship name="rDevice" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="VDDevice" inverseName="rDTCs" inverseEntity="VDDevice" syncable="YES"/>
+    </entity>
+    <entity name="VDEvent" representedClassName=".VDEvent" syncable="YES">
+        <attribute name="rDate" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="rId" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="rLatitude" optional="YES" attributeType="Decimal" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="rLongitude" optional="YES" attributeType="Decimal" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="rServerStatus" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="rSeverity" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="rType" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <relationship name="rReporter" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="VDUser" inverseName="rEventsReported" inverseEntity="VDUser" syncable="YES"/>
+    </entity>
+    <entity name="VDImage" representedClassName=".VDImage" syncable="YES">
+        <attribute name="rId" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="rImage" optional="YES" attributeType="Binary" syncable="YES"/>
+        <relationship name="rDeviceAvatar" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="VDDevice" inverseName="rAvatar" inverseEntity="VDDevice" syncable="YES"/>
+        <relationship name="rPendingDeviceAvatar" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="VDDevice" inverseName="rPendingAvatar" inverseEntity="VDDevice" syncable="YES"/>
+        <relationship name="rPendingUserAvatar" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="VDUser" inverseName="rPendingAvatar" inverseEntity="VDUser" syncable="YES"/>
+        <relationship name="rTypesUsingAsFuseImage" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="VDVehicleType" inverseName="rFuseImage" inverseEntity="VDVehicleType" syncable="YES"/>
+        <relationship name="rTypesUsingAsOBDImage" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="VDVehicleType" inverseName="rOBDImage" inverseEntity="VDVehicleType" syncable="YES"/>
+        <relationship name="rTypesUsingAsPostImmobImage" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="VDVehicleType" inverseName="rPostImmobImage" inverseEntity="VDVehicleType" syncable="YES"/>
+        <relationship name="rTypesUsingAsPostSAPImage" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="VDVehicleType" inverseName="rPostSAPImage" inverseEntity="VDVehicleType" syncable="YES"/>
+        <relationship name="rTypesUsingAsPostSSImage" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="VDVehicleType" inverseName="rPostSSImage" inverseEntity="VDVehicleType" syncable="YES"/>
+        <relationship name="rTypesUsingAsPreImmobImage" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="VDVehicleType" inverseName="rPreImmobImage" inverseEntity="VDVehicleType" syncable="YES"/>
+        <relationship name="rTypesUsingAsPreSAPImage" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="VDVehicleType" inverseName="rPreSAPImage" inverseEntity="VDVehicleType" syncable="YES"/>
+        <relationship name="rTypesUsingAsPreSSImage" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="VDVehicleType" inverseName="rPreSSImage" inverseEntity="VDVehicleType" syncable="YES"/>
+        <relationship name="rUserAvatar" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="VDUser" inverseName="rAvatar" inverseEntity="VDUser" syncable="YES"/>
+        <relationship name="rVehiclesUsingAsFuseImage" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="VDVehicle" inverseName="rFuseImage" inverseEntity="VDVehicle" syncable="YES"/>
+        <relationship name="rVehiclesUsingAsOBDImage" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="VDVehicle" inverseName="rOBDImage" inverseEntity="VDVehicle" syncable="YES"/>
+        <relationship name="rVehiclesUsingAsPostImmobImage" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="VDVehicle" inverseName="rPostImmobImage" inverseEntity="VDVehicle" syncable="YES"/>
+        <relationship name="rVehiclesUsingAsPostSAPImage" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="VDVehicle" inverseName="rPostSAPImage" inverseEntity="VDVehicle" syncable="YES"/>
+        <relationship name="rVehiclesUsingAsPostSSImage" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="VDVehicle" inverseName="rPostSSImage" inverseEntity="VDVehicle" syncable="YES"/>
+        <relationship name="rVehiclesUsingAsPreImmobImage" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="VDVehicle" inverseName="rPreImmobImage" inverseEntity="VDVehicle" syncable="YES"/>
+        <relationship name="rVehiclesUsingAsPreSAPImage" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="VDVehicle" inverseName="rPreSAPImage" inverseEntity="VDVehicle" syncable="YES"/>
+        <relationship name="rVehiclesUsingAsPreSSImage" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="VDVehicle" inverseName="rPreSSImage" inverseEntity="VDVehicle" syncable="YES"/>
+    </entity>
+    <entity name="VDIntersection" representedClassName=".VDIntersection" syncable="YES">
+        <attribute name="rAveStopTime" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="rId" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="rLatitude" optional="YES" attributeType="Decimal" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="rLongitude" optional="YES" attributeType="Decimal" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="rName" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="rDevicesNextIntersectionFor" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="VDDevice" inverseName="rNextIntersection" inverseEntity="VDDevice" syncable="YES"/>
+    </entity>
+    <entity name="VDMake" representedClassName=".VDMake" syncable="YES">
+        <attribute name="rId" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="rName" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="rModels" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="VDModel" inverseName="rMake" inverseEntity="VDModel" syncable="YES"/>
+        <relationship name="rVehicles" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="VDVehicle" inverseName="rMake" inverseEntity="VDVehicle" syncable="YES"/>
+    </entity>
+    <entity name="VDModel" representedClassName=".VDModel" syncable="YES">
+        <attribute name="rId" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="rName" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="rMake" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="VDMake" inverseName="rModels" inverseEntity="VDMake" syncable="YES"/>
+        <relationship name="rTypes" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="VDVehicleType" inverseName="rModel" inverseEntity="VDVehicleType" syncable="YES"/>
+        <relationship name="rVehicles" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="VDVehicle" inverseName="rModel" inverseEntity="VDVehicle" syncable="YES"/>
+    </entity>
+    <entity name="VDPermission" representedClassName=".VDPermission" syncable="YES">
+        <attribute name="rPermission" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <relationship name="rDevice" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="VDDevice" inverseName="rUserPermissions" inverseEntity="VDDevice" syncable="YES"/>
+        <relationship name="rUser" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="VDUser" inverseName="rDevicePermissions" inverseEntity="VDUser" syncable="YES"/>
+    </entity>
+    <entity name="VDPoint" representedClassName=".VDPoint" syncable="YES">
+        <attribute name="rId" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
+        <attribute name="rLatitude" optional="YES" attributeType="Decimal" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="rLongitude" optional="YES" attributeType="Decimal" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="rOrientation" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="rTime" optional="YES" attributeType="Date" syncable="YES"/>
+        <relationship name="rDeviceLastPointFor" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="VDDevice" inverseName="rLastPoint" inverseEntity="VDDevice" syncable="YES"/>
+        <relationship name="rTrip" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="VDTripPoint" inverseName="rPoint" inverseEntity="VDTripPoint" syncable="YES"/>
+        <relationship name="rUserLastPointFor" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="VDUser" inverseName="rLastPoint" inverseEntity="VDUser" syncable="YES"/>
+    </entity>
+    <entity name="VDTables" representedClassName=".VDTables" syncable="YES">
+        <attribute name="rLastUpdated" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="rTableId" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <relationship name="rAccount" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="VDUser" inverseName="rTableDates" inverseEntity="VDUser" syncable="YES"/>
+    </entity>
+    <entity name="VDTerms" representedClassName=".VDTerms" syncable="YES">
+        <attribute name="rId" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="rTerms" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="rUsersAccepted" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="VDUser" inverseName="rTermsAccepted" inverseEntity="VDUser" syncable="YES"/>
+    </entity>
+    <entity name="VDTrip" representedClassName=".VDTrip" syncable="YES">
+        <attribute name="rCo2Saved" optional="YES" attributeType="Decimal" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="rDistanceDriven" optional="YES" attributeType="Decimal" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="rEndTime" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="rFuelSaved" optional="YES" attributeType="Decimal" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="rFuelUsed" optional="YES" attributeType="Decimal" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="rHasBeenDeleted" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="rId" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="rIdleTimeSaved" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="rLastUpdated" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="rNumPoints" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="rStartTime" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="rStopTime" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="rTimeDriven" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <relationship name="rAggregates" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="VDTripToAggregate" inverseName="rTrip" inverseEntity="VDTripToAggregate" syncable="YES"/>
+        <relationship name="rAlerts" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="VDAlert" inverseName="rTrip" inverseEntity="VDAlert" syncable="YES"/>
+        <relationship name="rDevice" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="VDDevice" inverseName="rTrips" inverseEntity="VDDevice" syncable="YES"/>
+        <relationship name="rDeviceLastTripFor" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="VDDevice" inverseName="rLastTrip" inverseEntity="VDDevice" syncable="YES"/>
+        <relationship name="rPoints" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="VDTripPoint" inverseName="rTrip" inverseEntity="VDTripPoint" syncable="YES"/>
+        <relationship name="rUsers" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="VDUserTrips" inverseName="rTrip" inverseEntity="VDUserTrips" syncable="YES"/>
+    </entity>
+    <entity name="VDTripPoint" representedClassName=".VDTripPoint" syncable="YES">
+        <attribute name="rIndex" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <relationship name="rPoint" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="VDPoint" inverseName="rTrip" inverseEntity="VDPoint" syncable="YES"/>
+        <relationship name="rTrip" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="VDTrip" inverseName="rPoints" inverseEntity="VDTrip" syncable="YES"/>
+    </entity>
+    <entity name="VDTripToAggregate" representedClassName=".VDTripToAggregate" syncable="YES">
+        <attribute name="rIndex" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <relationship name="rAggregate" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="VDAggregate" inverseName="rTrips" inverseEntity="VDAggregate" syncable="YES"/>
+        <relationship name="rTrip" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="VDTrip" inverseName="rAggregates" inverseEntity="VDTrip" syncable="YES"/>
+    </entity>
+    <entity name="VDUser" representedClassName=".VDUser" syncable="YES">
+        <attribute name="rEmail" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="rFirstName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="rId" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="rLastName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="rLastUpdated" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="rPhoneNumber" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="rTimeTermsLastAccepted" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="rUserName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="rUserNameLowerCase" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="rAggregates" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="VDAggregate" inverseName="rUser" inverseEntity="VDAggregate" syncable="YES"/>
+        <relationship name="rAlerts" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="VDUserAlerts" inverseName="rUser" inverseEntity="VDUserAlerts" syncable="YES"/>
+        <relationship name="rAvatar" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="VDImage" inverseName="rUserAvatar" inverseEntity="VDImage" syncable="YES"/>
+        <relationship name="rContacts" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="VDContact" inverseName="rUser" inverseEntity="VDContact" syncable="YES"/>
+        <relationship name="rDevicePermissions" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="VDPermission" inverseName="rUser" inverseEntity="VDPermission" syncable="YES"/>
+        <relationship name="rEventsReported" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="VDEvent" inverseName="rReporter" inverseEntity="VDEvent" syncable="YES"/>
+        <relationship name="rLastDailyAggregate" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="VDAggregate" inverseName="rUserLastAggregateFor" inverseEntity="VDAggregate" syncable="YES"/>
+        <relationship name="rLastPoint" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="VDPoint" inverseName="rUserLastPointFor" inverseEntity="VDPoint" syncable="YES"/>
+        <relationship name="rLastTrip" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="VDUserTrips" inverseName="rUserLastTripFor" inverseEntity="VDUserTrips" syncable="YES"/>
+        <relationship name="rMyAggregates" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="VDAggregate" inverseName="rAggUser" inverseEntity="VDAggregate" syncable="YES"/>
+        <relationship name="rPendingAvatar" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="VDImage" inverseName="rPendingUserAvatar" inverseEntity="VDImage" syncable="YES"/>
+        <relationship name="rRequests" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="VDUserRequest" inverseName="rUser" inverseEntity="VDUserRequest" syncable="YES"/>
+        <relationship name="rRequestsSent" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="VDUserRequest" inverseName="rRequester" inverseEntity="VDUserRequest" syncable="YES"/>
+        <relationship name="rSettingChanges" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="VDUserSettingsChanges" inverseName="rUser" inverseEntity="VDUserSettingsChanges" syncable="YES"/>
+        <relationship name="rSettings" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="VDUserSettings" inverseName="rUser" inverseEntity="VDUserSettings" syncable="YES"/>
+        <relationship name="rTableDates" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="VDTables" inverseName="rAccount" inverseEntity="VDTables" syncable="YES"/>
+        <relationship name="rTermsAccepted" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="VDTerms" inverseName="rUsersAccepted" inverseEntity="VDTerms" syncable="YES"/>
+        <relationship name="rTrips" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="VDUserTrips" inverseName="rUser" inverseEntity="VDUserTrips" syncable="YES"/>
+    </entity>
+    <entity name="VDUserAlerts" representedClassName=".VDUserAlerts" syncable="YES">
+        <attribute name="rCanView" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="rHasBeenCleared" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="rHasBeenDisplayed" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="rPermission" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="rPresent" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <relationship name="rAlert" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="VDAlert" inverseName="rUsers" inverseEntity="VDAlert" syncable="YES"/>
+        <relationship name="rUser" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="VDUser" inverseName="rAlerts" inverseEntity="VDUser" syncable="YES"/>
+    </entity>
+    <entity name="VDUserRequest" representedClassName=".VDUserRequest" syncable="YES">
+        <attribute name="rId" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="rPermission" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="rStatus" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="rType" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <relationship name="rDevice" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="VDDevice" inverseName="rRequestsForDevice" inverseEntity="VDDevice" syncable="YES"/>
+        <relationship name="rRequester" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="VDUser" inverseName="rRequestsSent" inverseEntity="VDUser" syncable="YES"/>
+        <relationship name="rUser" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="VDUser" inverseName="rRequests" inverseEntity="VDUser" syncable="YES"/>
+    </entity>
+    <entity name="VDUserSettings" representedClassName=".VDUserSettings" syncable="YES">
+        <attribute name="rAccidentNotificationsEnabled" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="rAutoKeyEnabled" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="rAwardsEnabled" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="rBehaviorNotificationsEnabled" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="rCommunityAwardsEnabled" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="rDiagnosticNotificationsEnabled" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="rEmergencyContactsEnabled" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="rMyAwardsEnabled" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="rNotificationByEmailEnabled" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="rNotificationByPhoneEnabled" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="rNotificationByTextEnabled" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="rNotificationsEnabled" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="rOverspeed" optional="YES" attributeType="Decimal" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="rPrivacySettings" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="rSecurityNotificationsEnabled" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="rThresholdNotificationsEnabled" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="rTrafficAlertsEnabled" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="rUnitSystem" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <relationship name="rUser" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="VDUser" inverseName="rSettings" inverseEntity="VDUser" syncable="YES"/>
+    </entity>
+    <entity name="VDUserSettingsChanges" representedClassName=".VDUserSettingsChanges" syncable="YES">
+        <attribute name="rSetting" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="rTime" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="rValue" optional="YES" attributeType="Binary" syncable="YES"/>
+        <relationship name="rUser" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="VDUser" inverseName="rSettingChanges" inverseEntity="VDUser" syncable="YES"/>
+    </entity>
+    <entity name="VDUserTrips" representedClassName=".VDUserTrips" syncable="YES">
+        <attribute name="rHasBeenCleared" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="rPermission" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="rPresent" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <relationship name="rTrip" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="VDTrip" inverseName="rUsers" inverseEntity="VDTrip" syncable="YES"/>
+        <relationship name="rUser" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="VDUser" inverseName="rTrips" inverseEntity="VDUser" syncable="YES"/>
+        <relationship name="rUserLastTripFor" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="VDUser" inverseName="rLastTrip" inverseEntity="VDUser" syncable="YES"/>
+    </entity>
+    <entity name="VDVehicle" representedClassName=".VDVehicle" syncable="YES">
+        <attribute name="rName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="rVid" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="rVIN" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="rYear" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <relationship name="rAlerts" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="VDAlert" inverseName="rVehicle" inverseEntity="VDAlert" syncable="YES"/>
+        <relationship name="rFuseImage" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="VDImage" inverseName="rVehiclesUsingAsFuseImage" inverseEntity="VDImage" syncable="YES"/>
+        <relationship name="rMake" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="VDMake" inverseName="rVehicles" inverseEntity="VDMake" syncable="YES"/>
+        <relationship name="rModel" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="VDModel" inverseName="rVehicles" inverseEntity="VDModel" syncable="YES"/>
+        <relationship name="rOBDImage" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="VDImage" inverseName="rVehiclesUsingAsOBDImage" inverseEntity="VDImage" syncable="YES"/>
+        <relationship name="rPostImmobImage" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="VDImage" inverseName="rVehiclesUsingAsPostImmobImage" inverseEntity="VDImage" syncable="YES"/>
+        <relationship name="rPostSAPImage" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="VDImage" inverseName="rVehiclesUsingAsPostSAPImage" inverseEntity="VDImage" syncable="YES"/>
+        <relationship name="rPostSSImage" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="VDImage" inverseName="rVehiclesUsingAsPostSSImage" inverseEntity="VDImage" syncable="YES"/>
+        <relationship name="rPreImmobImage" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="VDImage" inverseName="rVehiclesUsingAsPreImmobImage" inverseEntity="VDImage" syncable="YES"/>
+        <relationship name="rPreSAPImage" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="VDImage" inverseName="rVehiclesUsingAsPreSAPImage" inverseEntity="VDImage" syncable="YES"/>
+        <relationship name="rPreSSImage" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="VDImage" inverseName="rVehiclesUsingAsPreSSImage" inverseEntity="VDImage" syncable="YES"/>
+    </entity>
+    <entity name="VDVehicleType" representedClassName=".VDVehicleType" syncable="YES">
+        <attribute name="rId" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="rMaxYear" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="rMinYear" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <relationship name="rFuseImage" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="VDImage" inverseName="rTypesUsingAsFuseImage" inverseEntity="VDImage" syncable="YES"/>
+        <relationship name="rModel" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="VDModel" inverseName="rTypes" inverseEntity="VDModel" syncable="YES"/>
+        <relationship name="rOBDImage" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="VDImage" inverseName="rTypesUsingAsOBDImage" inverseEntity="VDImage" syncable="YES"/>
+        <relationship name="rPostImmobImage" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="VDImage" inverseName="rTypesUsingAsPostImmobImage" inverseEntity="VDImage" syncable="YES"/>
+        <relationship name="rPostSAPImage" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="VDImage" inverseName="rTypesUsingAsPostSAPImage" inverseEntity="VDImage" syncable="YES"/>
+        <relationship name="rPostSSImage" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="VDImage" inverseName="rTypesUsingAsPostSSImage" inverseEntity="VDImage" syncable="YES"/>
+        <relationship name="rPreImmobImage" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="VDImage" inverseName="rTypesUsingAsPreImmobImage" inverseEntity="VDImage" syncable="YES"/>
+        <relationship name="rPreSAPImage" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="VDImage" inverseName="rTypesUsingAsPreSAPImage" inverseEntity="VDImage" syncable="YES"/>
+        <relationship name="rPreSSImage" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="VDImage" inverseName="rTypesUsingAsPreSSImage" inverseEntity="VDImage" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="VDAggregate" positionX="-63" positionY="-18" width="128" height="375"/>
+        <element name="VDAlert" positionX="-54" positionY="-9" width="128" height="315"/>
+        <element name="VDAlertToAggregate" positionX="0" positionY="45" width="128" height="90"/>
+        <element name="VDContact" positionX="18" positionY="63" width="128" height="135"/>
+        <element name="VDDevice" positionX="36" positionY="81" width="128" height="328"/>
+        <element name="VDDeviceSettings" positionX="-9" positionY="36" width="128" height="240"/>
+        <element name="VDDeviceSettingsChanges" positionX="0" positionY="45" width="128" height="105"/>
+        <element name="VDDTC" positionX="9" positionY="54" width="128" height="255"/>
+        <element name="VDEvent" positionX="18" positionY="63" width="128" height="163"/>
+        <element name="VDImage" positionX="27" positionY="72" width="128" height="373"/>
+        <element name="VDMake" positionX="36" positionY="81" width="128" height="105"/>
+        <element name="VDModel" positionX="45" positionY="90" width="128" height="120"/>
+        <element name="VDPermission" positionX="-9" positionY="36" width="128" height="90"/>
+        <element name="VDTables" positionX="0" positionY="45" width="128" height="90"/>
+        <element name="VDTerms" positionX="9" positionY="54" width="128" height="90"/>
+        <element name="VDTrip" positionX="18" positionY="63" width="128" height="330"/>
+        <element name="VDTripPoint" positionX="27" positionY="72" width="128" height="88"/>
+        <element name="VDTripToAggregate" positionX="36" positionY="81" width="128" height="88"/>
+        <element name="VDUser" positionX="-18" positionY="27" width="128" height="448"/>
+        <element name="VDUserAlerts" positionX="45" positionY="90" width="128" height="150"/>
+        <element name="VDUserRequest" positionX="-9" positionY="36" width="128" height="148"/>
+        <element name="VDUserSettings" positionX="0" positionY="45" width="128" height="330"/>
+        <element name="VDUserSettingsChanges" positionX="9" positionY="54" width="128" height="105"/>
+        <element name="VDUserTrips" positionX="18" positionY="63" width="128" height="28"/>
+        <element name="VDVehicle" positionX="27" positionY="72" width="128" height="270"/>
+        <element name="VDVehicleType" positionX="36" positionY="81" width="128" height="225"/>
+        <element name="VDPoint" positionX="0" positionY="135" width="128" height="163"/>
+        <element name="VDIntersection" positionX="9" positionY="144" width="128" height="133"/>
+    </elements>
+</model>

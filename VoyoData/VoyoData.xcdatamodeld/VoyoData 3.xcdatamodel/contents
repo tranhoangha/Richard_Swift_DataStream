@@ -1,0 +1,361 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="10171" systemVersion="15E65" minimumToolsVersion="Xcode 4.3">
+    <entity name="ModelAggregate" representedClassName=".ModelAggregate" syncable="YES">
+        <attribute name="co2saved" optional="YES" attributeType="Decimal" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="distance" optional="YES" attributeType="Decimal" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="driveTime" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="endTime" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="forDevice" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="fueldSaved" optional="YES" attributeType="Decimal" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="fuelUsed" optional="YES" attributeType="Decimal" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="id" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
+        <attribute name="idleTimeSaved" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="linkedId" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="numEvents" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="numTrips" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="startTime" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="stopTime" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="type" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <relationship name="agguser" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ModelUser" inverseName="myaggregates" inverseEntity="ModelUser" syncable="YES"/>
+        <relationship name="alerts" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="ModelAlertToAggregate" inverseName="aggregate" inverseEntity="ModelAlertToAggregate" syncable="YES"/>
+        <relationship name="device" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ModelDevice" inverseName="aggregates" inverseEntity="ModelDevice" syncable="YES"/>
+        <relationship name="deviceLastAggregateFor" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ModelDevice" inverseName="lastDailyAggregate" inverseEntity="ModelDevice" syncable="YES"/>
+        <relationship name="trips" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="ModelTripToAggregate" inverseName="aggregate" inverseEntity="ModelTripToAggregate" syncable="YES"/>
+        <relationship name="user" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ModelUser" inverseName="aggregates" inverseEntity="ModelUser" syncable="YES"/>
+        <relationship name="userLastAggregateFor" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ModelUser" inverseName="lastDailyAggregate" inverseEntity="ModelUser" syncable="YES"/>
+    </entity>
+    <entity name="ModelAlert" representedClassName=".ModelAlert" syncable="YES">
+        <attribute name="active" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="end" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="hasBeenDeleted" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="icon" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="id" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="latitude" optional="YES" attributeType="Decimal" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="longdescription" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="longitude" optional="YES" attributeType="Decimal" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="severity" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="shortdescription" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="start" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="type" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <relationship name="aggregates" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="ModelAlertToAggregate" inverseName="alert" inverseEntity="ModelAlertToAggregate" syncable="YES"/>
+        <relationship name="device" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ModelDevice" inverseName="alerts" inverseEntity="ModelDevice" syncable="YES"/>
+        <relationship name="trip" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ModelTrip" inverseName="alerts" inverseEntity="ModelTrip" syncable="YES"/>
+        <relationship name="users" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="ModelUserAlerts" inverseName="alert" inverseEntity="ModelUserAlerts" syncable="YES"/>
+        <relationship name="vehicle" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ModelVehicle" inverseName="alerts" inverseEntity="ModelVehicle" syncable="YES"/>
+    </entity>
+    <entity name="ModelAlertToAggregate" representedClassName=".ModelAlertToAggregate" syncable="YES">
+        <attribute name="index" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <relationship name="aggregate" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ModelAggregate" inverseName="alerts" inverseEntity="ModelAggregate" syncable="YES"/>
+        <relationship name="alert" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ModelAlert" inverseName="aggregates" inverseEntity="ModelAlert" syncable="YES"/>
+    </entity>
+    <entity name="ModelContacts" representedClassName=".ModelContacts" syncable="YES">
+        <attribute name="email" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="firstname" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="id" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="lastname" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="phonenumber" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="user" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ModelUser" inverseName="contacts" inverseEntity="ModelUser" syncable="YES"/>
+    </entity>
+    <entity name="ModelDevice" representedClassName=".ModelDevice" syncable="YES">
+        <attribute name="encryptionKey" optional="YES" attributeType="Binary" syncable="YES"/>
+        <attribute name="lastLocationUpdate" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="latitude" optional="YES" attributeType="Decimal" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="longitude" optional="YES" attributeType="Decimal" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="nextIntersectionLatitude" optional="YES" attributeType="Decimal" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="nextIntersectionLongitude" optional="YES" attributeType="Decimal" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="nextIntersectionName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="nextIntersectionTime" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="orientation" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="serial" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="version" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="activedtcs" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="ModelDTC" inverseName="activeOnDevice" inverseEntity="ModelDTC" syncable="YES"/>
+        <relationship name="aggregates" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="ModelAggregate" inverseName="device" inverseEntity="ModelAggregate" syncable="YES"/>
+        <relationship name="alerts" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="ModelAlert" inverseName="device" inverseEntity="ModelAlert" syncable="YES"/>
+        <relationship name="avatar" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ModelImage" inverseName="deviceAvatar" inverseEntity="ModelImage" syncable="YES"/>
+        <relationship name="dtcs" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="ModelDTC" inverseName="device" inverseEntity="ModelDTC" syncable="YES"/>
+        <relationship name="lastDailyAggregate" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ModelAggregate" inverseName="deviceLastAggregateFor" inverseEntity="ModelAggregate" syncable="YES"/>
+        <relationship name="lastTrip" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ModelTrip" inverseName="deviceLastTripFor" inverseEntity="ModelTrip" syncable="YES"/>
+        <relationship name="pendingAvatar" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ModelImage" inverseName="pendingDeviceAvatar" inverseEntity="ModelImage" syncable="YES"/>
+        <relationship name="settingchanges" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="ModelDeviceSettingsChanges" inverseName="device" inverseEntity="ModelDeviceSettingsChanges" syncable="YES"/>
+        <relationship name="settings" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ModelDeviceSettings" inverseName="device" inverseEntity="ModelDeviceSettings" syncable="YES"/>
+        <relationship name="trips" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="ModelTrip" inverseName="device" inverseEntity="ModelTrip" syncable="YES"/>
+        <relationship name="userpermissions" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="ModelPermission" inverseName="device" inverseEntity="ModelPermission" syncable="YES"/>
+    </entity>
+    <entity name="ModelDeviceSettings" representedClassName=".ModelDeviceSettings" syncable="YES">
+        <attribute name="autoKeyAllowed" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="autoStopEnabled" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="autoStopTime" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="driverDoorOnly" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="immobilizerEnabled" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="immobTimes" optional="YES" attributeType="Binary" syncable="YES"/>
+        <attribute name="keylessEnabled" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="mobilizeOnProximityEnabled" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="privacySettings" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="scheduledImmobilizerEnabled" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="startStopEnabled" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="stopAtParkEnabled" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <relationship name="device" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ModelDevice" inverseName="settings" inverseEntity="ModelDevice" syncable="YES"/>
+    </entity>
+    <entity name="ModelDeviceSettingsChanges" representedClassName=".ModelDeviceSettingsChanges" syncable="YES">
+        <attribute name="setting" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="time" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="value" optional="YES" attributeType="Binary" syncable="YES"/>
+        <relationship name="device" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ModelDevice" inverseName="settingchanges" inverseEntity="ModelDevice" syncable="YES"/>
+    </entity>
+    <entity name="ModelDTC" representedClassName=".ModelDTC" syncable="YES">
+        <attribute name="bus" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="dtcnumber" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="id" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="longdescription" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="severity" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="shortdescription" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="source" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="stillactive" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="symptom" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="timefirstreported" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="timelastreported" optional="YES" attributeType="Date" syncable="YES"/>
+        <relationship name="activeOnDevice" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ModelDevice" inverseName="activedtcs" inverseEntity="ModelDevice" syncable="YES"/>
+        <relationship name="device" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ModelDevice" inverseName="dtcs" inverseEntity="ModelDevice" syncable="YES"/>
+    </entity>
+    <entity name="ModelEvent" representedClassName=".ModelEvent" syncable="YES">
+        <attribute name="date" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="id" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="latitude" optional="YES" attributeType="Decimal" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="longitude" optional="YES" attributeType="Decimal" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="serverstatus" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="severity" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="type" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+    </entity>
+    <entity name="ModelImage" representedClassName=".ModelImage" syncable="YES">
+        <attribute name="id" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="image" optional="YES" attributeType="Binary" syncable="YES"/>
+        <relationship name="deviceAvatar" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="ModelDevice" inverseName="avatar" inverseEntity="ModelDevice" syncable="YES"/>
+        <relationship name="pendingDeviceAvatar" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="ModelDevice" inverseName="pendingAvatar" inverseEntity="ModelDevice" syncable="YES"/>
+        <relationship name="pendingUserAvatar" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="ModelUser" inverseName="pendingAvatar" inverseEntity="ModelUser" syncable="YES"/>
+        <relationship name="typeUsingAsFuseImg" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="ModelVehicleType" inverseName="fuseImg" inverseEntity="ModelVehicleType" syncable="YES"/>
+        <relationship name="typeUsingAsOBDImg" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="ModelVehicleType" inverseName="obdImg" inverseEntity="ModelVehicleType" syncable="YES"/>
+        <relationship name="typeUsingAsPostImmImg" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="ModelVehicleType" inverseName="postImmImg" inverseEntity="ModelVehicleType" syncable="YES"/>
+        <relationship name="typeUsingAsPostSAPImg" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="ModelVehicleType" inverseName="postSAPImg" inverseEntity="ModelVehicleType" syncable="YES"/>
+        <relationship name="typeUsingAsPostSSImg" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="ModelVehicleType" inverseName="postSSImg" inverseEntity="ModelVehicleType" syncable="YES"/>
+        <relationship name="typeUsingAsPreImmImg" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="ModelVehicleType" inverseName="preImmImg" inverseEntity="ModelVehicleType" syncable="YES"/>
+        <relationship name="typeUsingAsPreSAPImg" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="ModelVehicleType" inverseName="preSAPImg" inverseEntity="ModelVehicleType" syncable="YES"/>
+        <relationship name="typeUsingAsPreSSImg" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="ModelVehicleType" inverseName="preSSImg" inverseEntity="ModelVehicleType" syncable="YES"/>
+        <relationship name="userAvatar" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="ModelUser" inverseName="avatar" inverseEntity="ModelUser" syncable="YES"/>
+        <relationship name="vehiclesUsingAsFuseImg" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="ModelVehicle" inverseName="fuseImg" inverseEntity="ModelVehicle" syncable="YES"/>
+        <relationship name="vehiclesUsingAsObdImg" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="ModelVehicle" inverseName="obdImg" inverseEntity="ModelVehicle" syncable="YES"/>
+        <relationship name="vehiclesUsingAsPostImmImg" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="ModelVehicle" inverseName="postImmImg" inverseEntity="ModelVehicle" syncable="YES"/>
+        <relationship name="vehiclesUsingAsPostSAPImg" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="ModelVehicle" inverseName="postSAPImg" inverseEntity="ModelVehicle" syncable="YES"/>
+        <relationship name="vehiclesUsingAsPostSSImg" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="ModelVehicle" inverseName="postSSImg" inverseEntity="ModelVehicle" syncable="YES"/>
+        <relationship name="vehiclesUsingAsPreImmImg" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="ModelVehicle" inverseName="preImmImg" inverseEntity="ModelVehicle" syncable="YES"/>
+        <relationship name="vehiclesUsingAsPreSAPImg" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="ModelVehicle" inverseName="preSAPImg" inverseEntity="ModelVehicle" syncable="YES"/>
+        <relationship name="vehiclesUsingAsPreSSImg" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="ModelVehicle" inverseName="preSSImg" inverseEntity="ModelVehicle" syncable="YES"/>
+    </entity>
+    <entity name="ModelMake" representedClassName=".ModelMake" syncable="YES">
+        <attribute name="id" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="models" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="ModelModel" inverseName="make" inverseEntity="ModelModel" syncable="YES"/>
+        <relationship name="vehicles" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="ModelVehicle" inverseName="make" inverseEntity="ModelVehicle" syncable="YES"/>
+    </entity>
+    <entity name="ModelModel" representedClassName=".ModelModel" syncable="YES">
+        <attribute name="id" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="make" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ModelMake" inverseName="models" inverseEntity="ModelMake" syncable="YES"/>
+        <relationship name="types" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="ModelVehicleType" inverseName="model" inverseEntity="ModelVehicleType" syncable="YES"/>
+        <relationship name="vehicles" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="ModelVehicle" inverseName="model" inverseEntity="ModelVehicle" syncable="YES"/>
+    </entity>
+    <entity name="ModelPermission" representedClassName=".ModelPermission" syncable="YES">
+        <attribute name="rawPermission" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <relationship name="device" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ModelDevice" inverseName="userpermissions" inverseEntity="ModelDevice" syncable="YES"/>
+        <relationship name="user" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ModelUser" inverseName="devicepermissions" inverseEntity="ModelUser" syncable="YES"/>
+    </entity>
+    <entity name="ModelTables" representedClassName=".ModelTables" syncable="YES">
+        <attribute name="lastUpdated" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="tableId" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <relationship name="account" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ModelUser" inverseName="tableDates" inverseEntity="ModelUser" syncable="YES"/>
+    </entity>
+    <entity name="ModelTerms" representedClassName=".ModelTerms" syncable="YES">
+        <attribute name="id" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="terms" attributeType="String" syncable="YES"/>
+        <relationship name="usersAccepted" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="ModelUser" inverseName="termsAccepted" inverseEntity="ModelUser" syncable="YES"/>
+    </entity>
+    <entity name="ModelTrip" representedClassName=".ModelTrip" syncable="YES">
+        <attribute name="co2saved" optional="YES" attributeType="Decimal" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="distancedriven" optional="YES" attributeType="Decimal" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="endTime" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="fuelsaved" optional="YES" attributeType="Decimal" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="fuelused" optional="YES" attributeType="Decimal" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="hasBeenDeleted" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="id" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="idletimesaved" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="lastUpdated" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="numPoints" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="startTime" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="stoptime" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="timedriven" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <relationship name="aggregates" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="ModelTripToAggregate" inverseName="trip" inverseEntity="ModelTripToAggregate" syncable="YES"/>
+        <relationship name="alerts" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="ModelAlert" inverseName="trip" inverseEntity="ModelAlert" syncable="YES"/>
+        <relationship name="device" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ModelDevice" inverseName="trips" inverseEntity="ModelDevice" syncable="YES"/>
+        <relationship name="deviceLastTripFor" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ModelDevice" inverseName="lastTrip" inverseEntity="ModelDevice" syncable="YES"/>
+        <relationship name="points" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="ModelTripPoints" inverseName="trip" inverseEntity="ModelTripPoints" syncable="YES"/>
+        <relationship name="users" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="ModelUserTrips" inverseName="trip" inverseEntity="ModelUserTrips" syncable="YES"/>
+    </entity>
+    <entity name="ModelTripPoints" representedClassName=".ModelTripPoints" syncable="YES">
+        <attribute name="index" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="latitude" optional="YES" attributeType="Decimal" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="longitude" optional="YES" attributeType="Decimal" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="raworientation" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="time" optional="YES" attributeType="Date" syncable="YES"/>
+        <relationship name="trip" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="ModelTrip" inverseName="points" inverseEntity="ModelTrip" syncable="YES"/>
+    </entity>
+    <entity name="ModelTripToAggregate" representedClassName=".ModelTripToAggregate" syncable="YES">
+        <attribute name="index" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <relationship name="aggregate" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ModelAggregate" inverseName="trips" inverseEntity="ModelAggregate" syncable="YES"/>
+        <relationship name="trip" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ModelTrip" inverseName="aggregates" inverseEntity="ModelTrip" syncable="YES"/>
+    </entity>
+    <entity name="ModelUser" representedClassName=".ModelUser" syncable="YES">
+        <attribute name="email" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="firstname" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="id" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="lastLocationUpdate" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="lastname" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="lastUpdated" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="latitude" optional="YES" attributeType="Decimal" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="longitude" optional="YES" attributeType="Decimal" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="orientation" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="phonenumber" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="timeTermsLastAccepted" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="username" attributeType="String" indexed="YES" syncable="YES"/>
+        <attribute name="usernamelc" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="aggregates" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="ModelAggregate" inverseName="user" inverseEntity="ModelAggregate" syncable="YES"/>
+        <relationship name="alerts" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="ModelUserAlerts" inverseName="user" inverseEntity="ModelUserAlerts" syncable="YES"/>
+        <relationship name="avatar" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ModelImage" inverseName="userAvatar" inverseEntity="ModelImage" syncable="YES"/>
+        <relationship name="contacts" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="ModelContacts" inverseName="user" inverseEntity="ModelContacts" syncable="YES"/>
+        <relationship name="devicepermissions" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="ModelPermission" inverseName="user" inverseEntity="ModelPermission" syncable="YES"/>
+        <relationship name="lastDailyAggregate" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ModelAggregate" inverseName="userLastAggregateFor" inverseEntity="ModelAggregate" syncable="YES"/>
+        <relationship name="lastTrip" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ModelUserTrips" inverseName="lastTripForUser" inverseEntity="ModelUserTrips" syncable="YES"/>
+        <relationship name="myaggregates" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="ModelAggregate" inverseName="agguser" inverseEntity="ModelAggregate" syncable="YES"/>
+        <relationship name="pendingAvatar" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ModelImage" inverseName="pendingUserAvatar" inverseEntity="ModelImage" syncable="YES"/>
+        <relationship name="requests" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="ModelUserRequests" inverseName="user" inverseEntity="ModelUserRequests" syncable="YES"/>
+        <relationship name="requestsSent" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="ModelUserRequests" inverseName="requester" inverseEntity="ModelUserRequests" syncable="YES"/>
+        <relationship name="settingchanges" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="ModelUserSettingsChanges" inverseName="user" inverseEntity="ModelUserSettingsChanges" syncable="YES"/>
+        <relationship name="settings" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ModelUserSettings" inverseName="user" inverseEntity="ModelUserSettings" syncable="YES"/>
+        <relationship name="tableDates" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="ModelTables" inverseName="account" inverseEntity="ModelTables" syncable="YES"/>
+        <relationship name="termsAccepted" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ModelTerms" inverseName="usersAccepted" inverseEntity="ModelTerms" syncable="YES"/>
+        <relationship name="trips" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="ModelUserTrips" inverseName="user" inverseEntity="ModelUserTrips" syncable="YES"/>
+    </entity>
+    <entity name="ModelUserAlerts" representedClassName=".ModelUserAlerts" syncable="YES">
+        <attribute name="canview" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="hasBeenCleared" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="hasBeenDisplayed" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="permission" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="present" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <relationship name="alert" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ModelAlert" inverseName="users" inverseEntity="ModelAlert" syncable="YES"/>
+        <relationship name="user" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ModelUser" inverseName="alerts" inverseEntity="ModelUser" syncable="YES"/>
+    </entity>
+    <entity name="ModelUserRequests" representedClassName=".ModelUserRequests" syncable="YES">
+        <attribute name="id" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="permission" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="status" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="type" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <relationship name="device" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ModelDevice" syncable="YES"/>
+        <relationship name="requester" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ModelUser" inverseName="requestsSent" inverseEntity="ModelUser" syncable="YES"/>
+        <relationship name="user" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ModelUser" inverseName="requests" inverseEntity="ModelUser" syncable="YES"/>
+    </entity>
+    <entity name="ModelUserSettings" representedClassName=".ModelUserSettings" syncable="YES">
+        <attribute name="accidentNotificationsEnabled" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="autoKeyEnabled" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="awardsEnabled" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="behaviorNotificationsEnabled" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="communityAwardsEnabled" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="diagnosticNotificationsEnabled" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="emergencyContactsEnabled" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="myAwardsEnabled" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="notificationByEmailEnabled" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="notificationByPhoneEnabled" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="notificationByTextEnabled" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="notificationsEnabled" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="overspeed" optional="YES" attributeType="Decimal" defaultValueString="0" syncable="YES"/>
+        <attribute name="privacySettings" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="securityNotificationsEnabled" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="thresholdNotificationsEnabled" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="trafficAlertsEnabled" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="unitSystem" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <relationship name="user" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="ModelUser" inverseName="settings" inverseEntity="ModelUser" syncable="YES"/>
+    </entity>
+    <entity name="ModelUserSettingsChanges" representedClassName=".ModelUserSettingsChanges" syncable="YES">
+        <attribute name="setting" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="time" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="value" optional="YES" attributeType="Binary" syncable="YES"/>
+        <relationship name="user" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ModelUser" inverseName="settingchanges" inverseEntity="ModelUser" syncable="YES"/>
+    </entity>
+    <entity name="ModelUserTrips" representedClassName=".ModelUserTrips" syncable="YES">
+        <attribute name="hasBeenCleared" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="permission" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="present" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <relationship name="lastTripForUser" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ModelUser" inverseName="lastTrip" inverseEntity="ModelUser" syncable="YES"/>
+        <relationship name="trip" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ModelTrip" inverseName="users" inverseEntity="ModelTrip" syncable="YES"/>
+        <relationship name="user" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ModelUser" inverseName="trips" inverseEntity="ModelUser" syncable="YES"/>
+    </entity>
+    <entity name="ModelVehicle" representedClassName=".ModelVehicle" syncable="YES">
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="vid" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="vin" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="year" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <relationship name="alerts" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="ModelAlert" inverseName="vehicle" inverseEntity="ModelAlert" syncable="YES"/>
+        <relationship name="fuseImg" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ModelImage" inverseName="vehiclesUsingAsFuseImg" inverseEntity="ModelImage" syncable="YES"/>
+        <relationship name="make" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ModelMake" inverseName="vehicles" inverseEntity="ModelMake" syncable="YES"/>
+        <relationship name="model" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ModelModel" inverseName="vehicles" inverseEntity="ModelModel" syncable="YES"/>
+        <relationship name="obdImg" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ModelImage" inverseName="vehiclesUsingAsObdImg" inverseEntity="ModelImage" syncable="YES"/>
+        <relationship name="postImmImg" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ModelImage" inverseName="vehiclesUsingAsPostImmImg" inverseEntity="ModelImage" syncable="YES"/>
+        <relationship name="postSAPImg" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ModelImage" inverseName="vehiclesUsingAsPostSAPImg" inverseEntity="ModelImage" syncable="YES"/>
+        <relationship name="postSSImg" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ModelImage" inverseName="vehiclesUsingAsPostSSImg" inverseEntity="ModelImage" syncable="YES"/>
+        <relationship name="preImmImg" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ModelImage" inverseName="vehiclesUsingAsPreImmImg" inverseEntity="ModelImage" syncable="YES"/>
+        <relationship name="preSAPImg" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ModelImage" inverseName="vehiclesUsingAsPreSAPImg" inverseEntity="ModelImage" syncable="YES"/>
+        <relationship name="preSSImg" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ModelImage" inverseName="vehiclesUsingAsPreSSImg" inverseEntity="ModelImage" syncable="YES"/>
+    </entity>
+    <entity name="ModelVehicleType" representedClassName=".ModelVehicleType" syncable="YES">
+        <attribute name="id" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="maxYear" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="minYear" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <relationship name="fuseImg" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ModelImage" inverseName="typeUsingAsFuseImg" inverseEntity="ModelImage" syncable="YES"/>
+        <relationship name="model" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ModelModel" inverseName="types" inverseEntity="ModelModel" syncable="YES"/>
+        <relationship name="obdImg" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ModelImage" inverseName="typeUsingAsOBDImg" inverseEntity="ModelImage" syncable="YES"/>
+        <relationship name="postImmImg" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ModelImage" inverseName="typeUsingAsPostImmImg" inverseEntity="ModelImage" syncable="YES"/>
+        <relationship name="postSAPImg" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ModelImage" inverseName="typeUsingAsPostSAPImg" inverseEntity="ModelImage" syncable="YES"/>
+        <relationship name="postSSImg" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ModelImage" inverseName="typeUsingAsPostSSImg" inverseEntity="ModelImage" syncable="YES"/>
+        <relationship name="preImmImg" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ModelImage" inverseName="typeUsingAsPreImmImg" inverseEntity="ModelImage" syncable="YES"/>
+        <relationship name="preSAPImg" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ModelImage" inverseName="typeUsingAsPreSAPImg" inverseEntity="ModelImage" syncable="YES"/>
+        <relationship name="preSSImg" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ModelImage" inverseName="typeUsingAsPreSSImg" inverseEntity="ModelImage" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="ModelAggregate" positionX="-369" positionY="18" width="128" height="375"/>
+        <element name="ModelAlert" positionX="-369" positionY="18" width="128" height="315"/>
+        <element name="ModelAlertToAggregate" positionX="-351" positionY="36" width="128" height="90"/>
+        <element name="ModelContacts" positionX="-369" positionY="18" width="128" height="135"/>
+        <element name="ModelDevice" positionX="-27" positionY="-87" width="128" height="405"/>
+        <element name="ModelDeviceSettings" positionX="-369" positionY="18" width="128" height="240"/>
+        <element name="ModelDeviceSettingsChanges" positionX="-351" positionY="36" width="128" height="105"/>
+        <element name="ModelDTC" positionX="-369" positionY="18" width="128" height="255"/>
+        <element name="ModelEvent" positionX="-369" positionY="18" width="128" height="150"/>
+        <element name="ModelImage" positionX="-252" positionY="63" width="128" height="375"/>
+        <element name="ModelMake" positionX="-317" positionY="275" width="128" height="103"/>
+        <element name="ModelModel" positionX="-369" positionY="419" width="128" height="120"/>
+        <element name="ModelPermission" positionX="-225" positionY="-54" width="128" height="88"/>
+        <element name="ModelTables" positionX="-369" positionY="18" width="128" height="90"/>
+        <element name="ModelTerms" positionX="-342" positionY="45" width="128" height="90"/>
+        <element name="ModelTrip" positionX="-333" positionY="54" width="128" height="330"/>
+        <element name="ModelTripPoints" positionX="-360" positionY="27" width="128" height="135"/>
+        <element name="ModelTripToAggregate" positionX="-360" positionY="27" width="128" height="90"/>
+        <element name="ModelUser" positionX="-423" positionY="-129" width="128" height="480"/>
+        <element name="ModelUserAlerts" positionX="-360" positionY="27" width="128" height="150"/>
+        <element name="ModelUserRequests" positionX="-369" positionY="18" width="128" height="150"/>
+        <element name="ModelUserSettings" positionX="-369" positionY="18" width="128" height="330"/>
+        <element name="ModelUserSettingsChanges" positionX="-360" positionY="27" width="128" height="105"/>
+        <element name="ModelUserTrips" positionX="-351" positionY="36" width="128" height="135"/>
+        <element name="ModelVehicle" positionX="-567" positionY="0" width="128" height="270"/>
+        <element name="ModelVehicleType" positionX="-351" positionY="36" width="128" height="225"/>
+    </elements>
+</model>
